@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 #ifdef __linux__
 #include <unistd.h>
@@ -141,7 +141,8 @@ static unsigned int _stdcall RecvInThread(void*p)
 
 					std::string nstr(s1.substr(0, cutAt + SEPLN.length()));
 					s1 = s1.substr(cutAt + SEPLN.length());
-
+					
+					/*
 					if (tcpCl->isDemo && tcpCl->count_event >= 100)
 					{
 						tcpCl->count_event = 101;
@@ -152,7 +153,9 @@ static unsigned int _stdcall RecvInThread(void*p)
 					{
 						res = CHAR_2_WCHAR((char*)nstr.c_str());
 					}
-
+					*/
+					res = CHAR_2_WCHAR((char*)nstr.c_str());
+					
 					tcpCl->SendEvent(L"Received", res);
 				}
 
@@ -231,8 +234,8 @@ bool CAddInNative::Init(void* pConnection)
 	}
 	
 	connected = false;
-	isDemo = true;
-
+	//isDemo = true;
+	isDemo = false;
 	
 	delete[] productID;
 	
